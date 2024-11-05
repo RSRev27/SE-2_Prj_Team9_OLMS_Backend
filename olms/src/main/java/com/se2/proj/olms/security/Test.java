@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class JwtUtil {
+public class Test {
 
     private String secret = "secretKey";  // Use a secure key in production
 
