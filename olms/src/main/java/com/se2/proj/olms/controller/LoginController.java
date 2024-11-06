@@ -2,7 +2,9 @@ package com.se2.proj.olms.controller;
 
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.se2.proj.olms.dto.LoginRequest;
 import com.se2.proj.olms.service.LoginVerificationService;
+import com.se2.proj.olms.utils.Validation;
 
 @RestController
 @CrossOrigin
@@ -27,7 +30,7 @@ public class LoginController {
 	 */
 
     @PostMapping(path = "/login/verification")
-    public ResponseEntity<JSONObject> loginVerification(@RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<String> loginVerification(@RequestBody LoginRequest loginRequest) {
         try {
         	/*    // Authenticate user with AuthenticationManager
             Authentication authentication = authenticationManager.authenticate(
@@ -47,13 +50,17 @@ public class LoginController {
 			 * loginRequest.getPassword());
 			 *///jObj.put("username", loginRequest.getUserID());
             
-            JSONObject response = new JSONObject();
-            response = lvs.loginAuth(loginRequest.getUserID(), loginRequest.getPassword());
-            return new ResponseEntity<>(response, HttpStatus.OK);
+            String response;// = new JSONObject();
+            response = lvs.loginAuth(Validation.emptyCheck(loginRequest.getUserID()), Validation.emptyCheck(loginRequest.getPassword()));
+            System.out.println(response);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity<>(response, headers, HttpStatus.OK);
         } catch (Exception e) {
+        	e.printStackTrace();
             JSONObject error = new JSONObject();
             error.put("error", "Invalid credentials");
-            return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(error.toString(), HttpStatus.BAD_REQUEST);
         }
     }
     

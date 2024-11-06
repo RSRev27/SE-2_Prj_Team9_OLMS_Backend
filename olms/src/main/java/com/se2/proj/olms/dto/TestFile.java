@@ -6,6 +6,7 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoIterable;
+import com.se2.proj.olms.dao.UserRepository;
 import com.se2.proj.olms.entities.User;
 import com.se2.proj.olms.security.MyEncryptionUtils;
 import org.bson.conversions.Bson;
@@ -14,7 +15,7 @@ import org.bson.Document;
 import org.bson.UuidRepresentation;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MongoDBConnection {
+public class TestFile {
 	
 	@Autowired
     private static UserRepository userRepository;

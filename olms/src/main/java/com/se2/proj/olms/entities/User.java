@@ -9,10 +9,13 @@ public class User {
 
 	@Id
 	private String id;
+	
 	@Field("username")
 	private String username;
+	
 	@Field("password")
 	private String password;
+	
 	@Field("userType")
 	private String userType;
 

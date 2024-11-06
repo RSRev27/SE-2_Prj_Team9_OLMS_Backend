@@ -17,8 +17,8 @@ public class MyDecryptionUtils {
         Cipher c = Cipher.getInstance(ALGORITHM);
         c.init(Cipher.DECRYPT_MODE, key);
         byte[] decodedValue = Base64.getDecoder().decode(encryptedValue);
-        byte[] decValue = c.doFinal(decodedValue);
-        return new String(decValue);
+        //byte[] decValue = c.doFinal(decodedValue);
+        return new String(decodedValue);
     }
 	
 }

@@ -5,27 +5,37 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.se2.proj.olms.dto.UserRepository;
+import com.se2.proj.olms.dao.UserRepository;
+import com.se2.proj.olms.dto.UserRepositoryImpl;
 import com.se2.proj.olms.entities.User;
 import com.se2.proj.olms.security.MyDecryptionUtils;
+import com.se2.proj.olms.utils.Validation;
 
 @Service
 public class LoginVerificationService {
 
 	// private final MyDecryptionUtils passwordEncoder = new MyDecryptionUtils();
 
-	@Autowired
-	private UserRepository userRepository;
+	//@Autowired
+	private UserRepository userRepository = new UserRepositoryImpl();
 
-	public JSONObject loginAuth(String userID, String password) throws Exception {
-		User user = userRepository.findByUsername(userID);
+	public String loginAuth(String userID, String password) throws Exception {
+		JSONObject user = userRepository.findByUserId(Validation.emptyCheck(userID));
 		JSONObject jObj = new JSONObject();
-		if (MyDecryptionUtils.decrypt(user.getPassword()).equals(password)) {
+		if (MyDecryptionUtils.decrypt((String) user.get("password")).equals(Validation.emptyCheck(password))) {
 			jObj.put("password", password);
-			jObj.put("username", user.getUsername());
-			jObj.put("userType", user.getUserType());
+			jObj.put("username", user.get("username"));
+			jObj.put("Authentication", "Valid Authentication");
+			jObj.put("userType", user.get("userType"));
+			//jObj.remove("empty");
 		}
-		return jObj;
+		else {
+			jObj.put("password", password);
+			jObj.put("username", user.get("username"));
+			jObj.put("Authentication", "Invalid username or password");
+			//jObj.remove("empty");
+		}
+		return Validation.emptyCheck(jObj.toString());
 	}
 
 }
