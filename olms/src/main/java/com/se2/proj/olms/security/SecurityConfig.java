@@ -1,38 +1,20 @@
-package com.se2.proj.olms.security;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-@Configuration
-public class SecurityConfig {
-
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtRequestFilter jwtRequestFilter) throws Exception {
-        http
-            .csrf().disable()
-            .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/login/verification").permitAll()
-                .anyRequest().authenticated()
-            )
-            .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
-    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-}
+/*
+ * package com.se2.proj.olms.security;
+ * 
+ * import
+ * org.springframework.security.config.annotation.web.builders.HttpSecurity;
+ * import org.springframework.security.config.annotation.web.configuration.
+ * EnableWebSecurity;
+ * 
+ * @EnableWebSecurity public class SecurityConfig extends
+ * WebSecurityConfigurerAdapter {
+ * 
+ * @Override protected void configure(HttpSecurity http) throws Exception { http
+ * .csrf().disable() // Disable CSRF if needed .authorizeRequests()
+ * .antMatchers("/olms/login/**").permitAll() // Allow unauthenticated access to
+ * /login endpoint .anyRequest().authenticated() // Protect other endpoints
+ * .and() .formLogin().disable(); // Disable the default login page
+ * 
+ * // Optionally configure other authentication mechanisms like JWT or Basic
+ * Authentication } }
+ */
