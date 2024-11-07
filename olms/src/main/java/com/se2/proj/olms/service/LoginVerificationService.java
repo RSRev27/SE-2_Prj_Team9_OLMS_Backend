@@ -1,13 +1,11 @@
 package com.se2.proj.olms.service;
 
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.se2.proj.olms.dao.UserRepository;
 import com.se2.proj.olms.dto.UserRepositoryImpl;
-import com.se2.proj.olms.entities.User;
 import com.se2.proj.olms.security.MyDecryptionUtils;
 import com.se2.proj.olms.utils.Validation;
 

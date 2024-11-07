@@ -2,8 +2,6 @@ package com.se2.proj.olms.dto;
 
 import org.bson.Document;
 import org.json.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.se2.proj.olms.dao.UserRepository;

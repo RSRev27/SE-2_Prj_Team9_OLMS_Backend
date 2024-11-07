@@ -17,6 +17,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 	//@Value("${spring.data.mongodb.uri}") // Inject MongoDB URI from application.properties
 	private String connString = "mongodb+srv://vxs0570:SE2%40Project@se2project.w4igb.mongodb.net/?retryWrites=true&w=majority&appName=SE2Project";
 
+	@SuppressWarnings("null")
 	@Override
 	protected String getDatabaseName() {
 		return "SE2Project"; // Replace with your actual database name
@@ -27,6 +28,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 		return new MongoTemplate(mongoClient, getDatabaseName()); // Return MongoTemplate instance
 	}
 
+	@SuppressWarnings("null")
 	@Bean
 	public MongoClient mongoClient() {
 		// Create and configure MongoClient with SSL enabled

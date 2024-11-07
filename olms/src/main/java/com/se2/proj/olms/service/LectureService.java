@@ -39,6 +39,7 @@ public class LectureService {
         Files.createDirectories(courseDir);
 
         // Generate unique filename
+        @SuppressWarnings("null")
         String originalFilename = StringUtils.cleanPath(file.getOriginalFilename());
         String filename = System.currentTimeMillis() + "_" + originalFilename;
         Path filePath = courseDir.resolve(filename);
