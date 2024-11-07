@@ -20,7 +20,7 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 	@SuppressWarnings("null")
 	@Override
 	protected String getDatabaseName() {
-		return "SE2Project"; // Replace with your actual database name
+		return "SE2_Project"; // Replace with your actual database name
 	}
 
 	@Bean

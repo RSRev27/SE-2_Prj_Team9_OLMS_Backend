@@ -37,7 +37,7 @@ public class LectureController {
                 .map(lecture -> Map.of(
                     "id", lecture.getId(),
                     "title", lecture.getTitle(),
-                    "link", "/api/courses/" + courseId + "/lectures/files/" + lecture.getFilename()
+                    "link", "/courses/" + courseId + "/lectures/files/" + lecture.getFilename()
                 ))
                 .collect(Collectors.toList())
         );
