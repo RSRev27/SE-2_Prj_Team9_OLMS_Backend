@@ -25,7 +25,7 @@ public class LoginVerificationService {
 		if (MyDecryptionUtils.decrypt((String) user.get("password")).equals(Validation.emptyCheck(password))) {
 			jObj.put("password", password);
 			jObj.put("username", user.get("username"));
-			jObj.put("Authentication", "Valid Authentication");
+			jObj.put("authentication", "Valid Authentication");
 			jObj.put("userType", user.get("userType"));
 			//jObj.remove("empty");
 		}
