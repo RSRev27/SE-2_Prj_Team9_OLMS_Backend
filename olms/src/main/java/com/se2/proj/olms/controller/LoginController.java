@@ -52,7 +52,7 @@ public class LoginController {
             
             String response;// = new JSONObject();
             response = lvs.loginAuth(Validation.emptyCheck(loginRequest.getUserID()), Validation.emptyCheck(loginRequest.getPassword()));
-            System.out.println(response);
+            //System.out.println(response);
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             return new ResponseEntity<>(response, headers, HttpStatus.OK);
