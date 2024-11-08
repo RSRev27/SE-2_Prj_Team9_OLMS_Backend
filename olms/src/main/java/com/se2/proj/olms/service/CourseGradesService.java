@@ -23,7 +23,7 @@ public class CourseGradesService {
         return jObj;
     }
 
-    public JSONObject saveGrades(SaveGradesRequest save){
+    public CourseGrades saveGrades(SaveGradesRequest save){
         //Query query = new Query();
         //query.addCriteria(Criteria.where("courseId").is(courseId));
         CourseGrades courseGrades = new CourseGrades();
@@ -34,8 +34,8 @@ public class CourseGradesService {
         courseGrades.setQuizResults(save.getQuizResults());
         courseGrades.setStudentName(save.getStudentName());
         mongoTemplate.save(courseGrades);
-        JSONObject jObj = new JSONObject(mongoTemplate.save(courseGrades));
-        return jObj;
+        //JSONObject jObj = new JSONObject(courseGrades);
+        return courseGrades;
     }
 
 }
