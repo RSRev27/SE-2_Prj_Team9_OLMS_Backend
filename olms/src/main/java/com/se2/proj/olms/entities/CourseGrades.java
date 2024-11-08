@@ -15,5 +15,6 @@ public class CourseGrades {
     String quizResults;
     String assignmentId;
     String assignmentResults;
+    String studentName;
     //String visibility;
 }

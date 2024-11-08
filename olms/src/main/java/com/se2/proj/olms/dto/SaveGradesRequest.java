@@ -14,5 +14,7 @@ public class SaveGradesRequest {
     String quizResults;
     String assignmentId;
     String assignmentResults;
-    boolean edit;
+    //boolean edit;
+    String userType;
+    String studentName;
 }

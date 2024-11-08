@@ -7,10 +7,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import com.se2.proj.olms.dto.GetGradesRequest;
 import com.se2.proj.olms.dto.SaveGradesRequest;
 import com.se2.proj.olms.entities.CourseGrades;
-import com.se2.proj.olms.entities.LectureDocument;
 
 @Service
 public class CourseGradesService {
@@ -18,15 +16,15 @@ public class CourseGradesService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public JSONObject getGrades(String courseId){
+    public JSONObject getGrades(String courseId, String userType, String studentName) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("courseId").is(courseId));
+        query.addCriteria(new Criteria().andOperator(Criteria.where("courseId").is(courseId), Criteria.where("studentName").is(studentName)));
         JSONObject jObj = new JSONObject(mongoTemplate.find(query, CourseGrades.class));
         return jObj;
     }
 
     public JSONObject saveGrades(SaveGradesRequest save){
-        Query query = new Query();
+        //Query query = new Query();
         //query.addCriteria(Criteria.where("courseId").is(courseId));
         CourseGrades courseGrades = new CourseGrades();
         courseGrades.setAssignmentId(save.getAssignmentId());
@@ -34,6 +32,7 @@ public class CourseGradesService {
         courseGrades.setCourseId(save.getCourseId());
         courseGrades.setQuizId(save.getQuizId());
         courseGrades.setQuizResults(save.getQuizResults());
+        courseGrades.setStudentName(save.getStudentName());
         mongoTemplate.save(courseGrades);
         JSONObject jObj = new JSONObject(mongoTemplate.save(courseGrades));
         return jObj;
