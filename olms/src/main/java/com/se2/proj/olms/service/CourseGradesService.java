@@ -1,6 +1,7 @@
 package com.se2.proj.olms.service;
 
-import org.json.JSONObject;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -16,11 +17,11 @@ public class CourseGradesService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public JSONObject getGrades(String courseId, String userType, String studentName) {
+    public Object[] getGrades(String courseId, String userType, String studentName) {
         Query query = new Query();
         query.addCriteria(new Criteria().andOperator(Criteria.where("courseId").is(courseId), Criteria.where("studentName").is(studentName)));
-        JSONObject jObj = new JSONObject(mongoTemplate.find(query, CourseGrades.class));
-        return jObj;
+        List<CourseGrades> grades = mongoTemplate.find(query, CourseGrades.class);
+        return grades.toArray();
     }
 
     public CourseGrades saveGrades(SaveGradesRequest save){
