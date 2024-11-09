@@ -30,7 +30,7 @@ public class CourseGradesController {
             @RequestBody GetGradesRequest requestBody) {
         try {
             //LectureDocument lecture = lectureService.uploadLecture(courseId, file);
-            Object[] results = courseGradesService.getGrades(requestBody.getCourseId(), requestBody.getUserType(), requestBody.getStudentName());
+            Object[] results = courseGradesService.getGrades(requestBody.getCourseId());//, requestBody.getUserType(), requestBody.getStudentName());
             //JSONObject response =  new JSONObject(results);
             return ResponseEntity.ok(results);
         } catch (Exception e) {

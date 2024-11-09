@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class GetGradesRequest {
     private String courseId;
-    private String userType;
-    private String studentName;
+    //private String userType;
+    //private String studentName;
 }

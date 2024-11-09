@@ -17,9 +17,9 @@ public class CourseGradesService {
     @Autowired
     private MongoTemplate mongoTemplate;
 
-    public Object[] getGrades(String courseId, String userType, String studentName) {
+    public Object[] getGrades(String courseId) {
         Query query = new Query();
-        query.addCriteria(new Criteria().andOperator(Criteria.where("courseId").is(courseId), Criteria.where("studentName").is(studentName)));
+        query.addCriteria(new Criteria().andOperator(Criteria.where("courseId").is(courseId)/*, Criteria.where("studentName").is(studentName)*/));
         List<CourseGrades> grades = mongoTemplate.find(query, CourseGrades.class);
         return grades.toArray();
     }
