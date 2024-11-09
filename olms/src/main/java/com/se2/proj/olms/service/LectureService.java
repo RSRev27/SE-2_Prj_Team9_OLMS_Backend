@@ -34,20 +34,16 @@ public class LectureService {
     }
 
     public LectureDocument uploadLecture(String courseId, MultipartFile file) throws Exception {
-        // Create course directory if it doesn't exist
         Path courseDir = Paths.get(uploadDir, courseId);
         Files.createDirectories(courseDir);
 
-        // Generate unique filename
         @SuppressWarnings("null")
         String originalFilename = StringUtils.cleanPath(file.getOriginalFilename());
         String filename = System.currentTimeMillis() + "_" + originalFilename;
         Path filePath = courseDir.resolve(filename);
 
-        // Save file to filesystem
         Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-        // Create and save document in MongoDB
         LectureDocument lecture = new LectureDocument();
         lecture.setCourseId(courseId);
         lecture.setTitle(originalFilename);
@@ -62,7 +58,6 @@ public class LectureService {
     }
 
     public void deleteLecture(String id) throws Exception {
-        // Retrieve lecture document
         Query query = new Query();
         query.addCriteria(Criteria.where("_id").is(id));
         LectureDocument lecture = mongoTemplate.findOne(query, LectureDocument.class);
@@ -71,18 +66,10 @@ public class LectureService {
             throw new RuntimeException("Lecture not found");
         }
 
-        // Delete file from filesystem
         Path filePath = Paths.get(lecture.getFilePath());
         Files.deleteIfExists(filePath);
 
-        // Delete document from MongoDB
         mongoTemplate.remove(query, LectureDocument.class);
     }
-
-    // Example of a custom query using MongoTemplate
-    public List<LectureDocument> findLecturesByCustomQuery(String courseId) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("courseId").is(courseId));
-        return mongoTemplate.find(query, LectureDocument.class);
-    }
+    
 }

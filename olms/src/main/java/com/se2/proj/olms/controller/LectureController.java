@@ -22,7 +22,7 @@ import com.se2.proj.olms.service.LectureService;
 //public class LectureController {
 @RestController
 @RequestMapping("/courses")
-@CrossOrigin // Adjust as needed for your React app
+@CrossOrigin
 public class LectureController {
  
     @Autowired

@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.se2.proj.olms.dto.LoginRequest;
@@ -62,12 +62,6 @@ public class LoginController {
             error.put("error", "Invalid credentials");
             return new ResponseEntity<>(error.toString(), HttpStatus.BAD_REQUEST);
         }
-    }
-    
-    @RequestMapping("/olms/login")
-    public String loginPage() {
-        // Return your custom login view or response
-        return "login"; // Or return any other appropriate response
     }
 
 }
