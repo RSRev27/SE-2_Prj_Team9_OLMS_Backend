@@ -1,5 +1,6 @@
 package com.se2.proj.olms.dto;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.mongodb.config.AbstractMongoClientConfiguration;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -14,8 +15,8 @@ import com.mongodb.client.MongoClients;
 //@EnableMongoRepositories(basePackages = "com.se2.proj.olms.dto") // Enable repositories for the specified package
 public class MongoConfig extends AbstractMongoClientConfiguration {
 
-	//@Value("${spring.data.mongodb.uri}") // Inject MongoDB URI from application.properties
-	private String connString = "mongodb+srv://vxs0570:SE2%40Project@se2project.w4igb.mongodb.net/?retryWrites=true&w=majority&appName=SE2Project";
+	@Value("${spring.data.mongodb.uri}") // Inject MongoDB URI from application.properties
+	private String connString;
 
 	@SuppressWarnings("null")
 	@Override
