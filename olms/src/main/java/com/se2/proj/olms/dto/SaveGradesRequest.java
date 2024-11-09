@@ -8,13 +8,13 @@ import lombok.Data;
 public class SaveGradesRequest {
     
     @Id
-    String Id;
-    String courseId;
-    String quizId;
-    String quizResults;
-    String assignmentId;
+    private String Id;
+    private String courseId;
+    private String quizId;
+    private String quizResults;
+    private String assignmentId;
     String assignmentResults;
     //boolean edit;
-    String userType;
-    String studentName;
+    private String userType;
+    private String studentName;
 }
