@@ -25,7 +25,7 @@ public class LectureService {
     private MongoTemplate mongoTemplate;
 
     @Value("${file.upload-dir}")
-    private String uploadDir;
+    public String uploadDir;
 
     public List<LectureDocument> getLecturesByCourseId(String courseId) {
         Query query = new Query();

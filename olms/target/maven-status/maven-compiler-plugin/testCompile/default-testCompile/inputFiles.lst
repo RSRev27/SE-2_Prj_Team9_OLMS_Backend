@@ -1,3 +1,2 @@
-/workspaces/SE-2_Prj_Team9_OLMS_Backend/olms/src/test/java/com/se2/proj/olms/OlmsApplicationTests.java
-/workspaces/SE-2_Prj_Team9_OLMS_Backend/olms/src/test/java/com/se2/proj/olms/TestOlmsApplication.java
-/workspaces/SE-2_Prj_Team9_OLMS_Backend/olms/src/test/java/com/se2/proj/olms/TestcontainersConfiguration.java
+/workspaces/SE-2_Prj_Team9_OLMS_Backend/olms/src/test/java/com/se2/proj/olms/CourseGradesServiceTest.java
+/workspaces/SE-2_Prj_Team9_OLMS_Backend/olms/src/test/java/com/se2/proj/olms/LectureServiceTest.java
