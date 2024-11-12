@@ -64,4 +64,14 @@ public class LoginController {
         }
     }
 
+    @PostMapping(path = "/register")
+    public ResponseEntity<String> register(@RequestBody LoginRequest loginRequest) throws Exception {
+        String response;
+        response = lvs.resgisterUser(loginRequest);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        return new ResponseEntity<>(response, headers, HttpStatus.OK);
+        //return null;
+    }
+
 }

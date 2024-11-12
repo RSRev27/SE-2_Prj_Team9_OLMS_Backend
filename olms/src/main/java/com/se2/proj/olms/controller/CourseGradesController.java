@@ -43,7 +43,7 @@ public class CourseGradesController {
     public ResponseEntity<?> saveGrades(@RequestBody SaveGradesRequest requestBody) {
         try {
             //LectureDocument lecture = lectureService.uploadLecture(courseId, file);
-            if(!requestBody.getUserType().equals("student")){
+            if(!requestBody.getUserType().equalsIgnoreCase("student")){
                 return ResponseEntity.ok(courseGradesService.saveGrades(requestBody));
             }
             else{
